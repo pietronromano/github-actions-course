@@ -20,8 +20,8 @@
 name: 031-build-deploy-webapp-to-azure
 
 env:
-  AZURE_WEBAPP_NAME: appservice-enis    # set this to the name of your Azure Web App
-  DOTNET_VERSION: '6.0.x'                       # set this to the .NET Core version to use
+  AZURE_WEBAPP_NAME: wa-aspnet-gha    # set this to the name of your [PRE-EXISTING] Azure Web App
+  DOTNET_VERSION: '9.0.x'               # set this to the .NET Core version to use
 
 on:
   push:
@@ -83,5 +83,7 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          # Download from Azure WebApp overview page
+          # In GitHub, save contents as Actions -> Repository Secret with this name
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }} 
           package: .
