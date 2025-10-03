@@ -75,7 +75,8 @@ jobs:
 
     steps:
       - name: Download artifact from build job
-        uses: actions/download-artifact@v3
+      # Had to update from @v3 to v4 as it was deprecated
+        uses: actions/download-artifact@v4
         with:
           name: .net-app
 
